@@ -11,29 +11,40 @@ sizebtn.addEventListener('click', () => {
         size = 1;
     }
     let canvas = create_grid(size);
-    body.appendChild(canvas)
+    body.appendChild(canvas);
 })
+
+function getRandomColor() {
+    const r = Math.floor(Math.random() * 256);
+    const g = Math.floor(Math.random() * 256);
+    const b = Math.floor(Math.random() * 256);
+    return `rgb(${r}, ${g}, ${b})`;
+  }
+
 
 function create_grid(n) {
     if (document.querySelector('.canvas') !== null) {
         document.querySelector('.canvas').remove();
     }
+    
     let canvas = document.createElement('div');
     canvas.classList.add('canvas');
+
     for (let i = 0; i < n; i++) {
-        let row = document.createElement('div')
-        row.classList.add('row')
+        let row = document.createElement('div');
+        row.classList.add('row');
         canvas.appendChild(row);
+
         for (let j = 0; j < n; j++) {
-            let box = document.createElement('div')
-            box.classList.add('box')
-            row.appendChild(box)
+            let box = document.createElement('div');
+            box.classList.add('box');
+            row.appendChild(box);
             box.addEventListener('mouseover', () => 
             {
-                box.classList.add('hover');
+                box.style.backgroundColor = `${getRandomColor()}`;
             })
         }
     }
-    body.appendChild(canvas)   
+    body.appendChild(canvas);   
 }
 
